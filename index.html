@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ミモザパートナーズ合同会社</title>
+<style>
+  /* ===== デザイントークン =====
+     palette : 生成りの紙(#FBF7EE) / 墨(#2A2723) / ミモザ黄(#E3B23C) / 葉のくすみ緑(#7C8466) / 影(#8A8270)
+     type    : 見出し=明朝(Noto Serif JP) 本文=ゴシック(Noto Sans JP)
+     signature: ミモザの小さな点（黄色の円）を見出しの印に使う */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --paper:#FBF7EE; --ink:#2A2723; --mimosa:#E3B23C; --leaf:#7C8466; --muted:#8A8270;
+    --line:#E7DFC9;
+  }
+  body{
+    font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{ font-family:'Noto Serif JP',serif; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 1.5rem; }
+
+  /* ヒーロー */
+  .hero{ padding:6rem 0 4rem; text-align:center; }
+  .hero .brand-mark{
+    display:inline-block; width:10px; height:10px; border-radius:50%;
+    background:var(--mimosa); margin-bottom:1.5rem;
+    box-shadow:16px 0 0 var(--mimosa), 8px -8px 0 var(--mimosa), -8px -8px 0 var(--mimosa), -16px 0 0 var(--mimosa);
+  }
+  .hero h1{
+    font-family:'Noto Serif JP',serif; font-weight:600;
+    font-size:clamp(28px,6vw,40px); letter-spacing:.04em; line-height:1.4;
+    margin-top:2rem; margin-bottom:1.25rem;
+  }
+  .hero .lead{ font-size:15px; color:var(--muted); letter-spacing:.02em; }
+  .hero .company{ font-size:13px; color:var(--muted); margin-top:2.5rem; letter-spacing:.08em; }
+
+  /* セクション共通 */
+  section{ padding:3.5rem 0; }
+  .eyebrow{
+    font-family:'Noto Serif JP',serif; font-size:12px; letter-spacing:.18em;
+    color:var(--mimosa); text-transform:uppercase; margin-bottom:.75rem;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--mimosa); }
+  h2.sec-title{
+    font-family:'Noto Serif JP',serif; font-weight:500; font-size:24px;
+    letter-spacing:.03em; margin-bottom:1.5rem; line-height:1.5;
+  }
+  .prose p{ font-size:15px; margin-bottom:1rem; color:#3a3631; }
+  .prose p:last-child{ margin-bottom:0; }
+
+  .divider{ height:1px; background:var(--line); border:none; }
+
+  /* 事業カード */
+  .biz{ padding:2.5rem 0; border-bottom:1px solid var(--line); }
+  .biz:last-child{ border-bottom:none; }
+  .biz-name{
+    font-family:'Noto Serif JP',serif; font-size:20px; font-weight:600;
+    margin-bottom:.25rem; letter-spacing:.03em;
+  }
+  .biz-tag{ font-size:12px; color:var(--leaf); letter-spacing:.06em; margin-bottom:1rem; }
+  .biz-desc{ font-size:14.5px; color:#3a3631; margin-bottom:1.25rem; }
+  .biz-link{
+    display:inline-block; font-size:13px; color:var(--ink);
+    border-bottom:1.5px solid var(--mimosa); padding-bottom:2px; text-decoration:none;
+    transition:opacity .15s;
+  }
+  .biz-link:hover{ opacity:.6; }
+  .menu{ list-style:none; margin:0 0 1.25rem; padding:0; }
+  .menu li{ padding:.9rem 0; border-top:1px solid var(--line); }
+  .menu li:first-child{ border-top:none; }
+  .menu-name{
+    display:block; font-family:'Noto Serif JP',serif; font-size:15px;
+    font-weight:600; margin-bottom:.2rem; letter-spacing:.02em;
+  }
+  .menu-desc{ display:block; font-size:13.5px; color:#3a3631; }
+  .biz-links{ display:flex; flex-wrap:wrap; gap:1.5rem; }
+
+  /* 会社概要 */
+  .facts{ width:100%; border-collapse:collapse; font-size:14.5px; }
+  .facts th, .facts td{ text-align:left; padding:.85rem 0; vertical-align:top; border-bottom:1px solid var(--line); }
+  .facts th{ width:120px; font-weight:500; color:var(--muted); white-space:nowrap; }
+  .facts td{ color:#3a3631; }
+
+  /* 問い合わせ */
+  .contact{ background:#F5EFDF; border-radius:16px; padding:2.5rem 2rem; }
+  .field{ margin-bottom:1.1rem; }
+  .field label{ display:block; font-size:13px; color:var(--muted); margin-bottom:.4rem; }
+  .field input, .field textarea{
+    width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:9px;
+    font-size:15px; font-family:inherit; background:#fff; color:var(--ink); outline:none;
+    transition:border-color .15s;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--mimosa); }
+  .submit-btn{
+    margin-top:.5rem; padding:13px 40px; background:var(--ink); color:var(--paper);
+    border:none; border-radius:9px; font-size:15px; font-family:inherit; cursor:pointer;
+    transition:background .15s; letter-spacing:.05em;
+  }
+  .submit-btn:hover{ background:#46413a; }
+  .submit-btn:disabled{ opacity:.6; cursor:default; }
+
+  /* フッター */
+  footer{ text-align:center; padding:3rem 0 4rem; font-size:12px; color:var(--muted); letter-spacing:.06em; }
+
+  @media (max-width:480px){
+    .hero{ padding:4.5rem 0 3rem; }
+    .facts th{ width:96px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ① ヒーロー -->
+  <header class="hero">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <h1>言葉を、かたちに。<br>想いを、のこす。</h1>
+    <p class="lead">本づくりと、人生の節目に寄り添う言葉の制作を行っています。</p>
+    <p class="company serif">ミモザパートナーズ合同会社</p>
+  </header>
+
+  <hr class="divider">
+
+  <!-- ② 私たちについて -->
+  <section>
+    <p class="eyebrow">About us</p>
+    <h2 class="sec-title">世に出すべき言葉を、世に出す。</h2>
+    <div class="prose">
+      <p>編集者として多くの方と向き合うなかで、出版社の枠組みでは世に出しにくいけれど、本当は届けられるべき本がたくさんある——そう感じてきました。ミモザパートナーズは、そうした１冊１冊に、世に出る機会を提供するために生まれました。</p>
+      <p>本だけではありません。お葬式という人生の集大成に、故人の言葉を残すこと。それは、遺された方々の人生に、故人の想いや人となりが脈々と受け継がれていくことだと考えています。プロの編集者だからこそできる、言葉を残す仕事を——その想いから「のこす言葉」もはじめました。</p>
+      <p>本も、人生の最後の１枚も。大切な言葉を、ていねいにかたちにしていきます。</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ③ 事業紹介 -->
+  <section>
+    <p class="eyebrow">Our work</p>
+    <h2 class="sec-title">事業について</h2>
+
+    <div class="biz">
+      <p class="biz-name">ミモザ堂</p>
+      <p class="biz-tag">書籍出版サポート・出版コンサルティング</p>
+      <p class="biz-desc">プロの編集者が、本づくりに伴走します。</p>
+      <ul class="menu">
+        <li>
+          <span class="menu-name">書籍出版サポート</span>
+          <span class="menu-desc">編集・デザイン・印刷・流通までをワンストップで。本を出したい個人・企業の１冊を世に送り出します。</span>
+        </li>
+        <li>
+          <span class="menu-name">出版コンサルティング</span>
+          <span class="menu-desc">企画・編集・売り方まで、出版にまつわるご相談に編集者の視点でお応えします。</span>
+        </li>
+      </ul>
+      <div class="biz-links">
+        <a class="biz-link" href="https://mimosapn.github.io/mimosa" target="_blank" rel="noopener">お見積・詳細 →</a>
+        <a class="biz-link" href="https://mimosapn.github.io/mimosa/shop" target="_blank" rel="noopener">オンラインショップ →</a>
+      </div>
+    </div>
+
+    <div class="biz">
+      <p class="biz-name">のこす言葉</p>
+      <p class="biz-tag">冊子・リーフレット制作</p>
+      <p class="biz-desc">故人の人生と言葉を、１冊の冊子や１枚のリーフレットに。プロの編集者が、ご遺族のお話をうかがいながら、その方らしさが伝わる言葉をかたちにします。</p>
+      <a class="biz-link" href="#contact">お問い合わせ →</a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ④ 会社概要 -->
+  <section>
+    <p class="eyebrow">Company</p>
+    <h2 class="sec-title">会社概要</h2>
+    <table class="facts">
+      <tr><th>商号</th><td>ミモザパートナーズ合同会社</td></tr>
+      <tr><th>代表者</th><td>石井 絵里加</td></tr>
+      <tr><th>所在地</th><td>東京都豊島区駒込</td></tr>
+      <!-- 設立日：登記上の正式日 -->
+      <tr><th>設立</th><td>2026年1月13日</td></tr>
+      <tr><th>事業内容</th><td>出版事業（ミモザ書房・ミモザ堂）／冊子・リーフレット制作（のこす言葉）／業務システムの開発・改善支援　ほか</td></tr>
+      <tr><th>連絡先</th><td>info@mimosa-partners.com</td></tr>
+    </table>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ⑤ お問い合わせ -->
+  <section id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2 class="sec-title">お問い合わせ</h2>
+    <div class="contact">
+      <div class="field">
+        <label for="c-name">お名前</label>
+        <input type="text" id="c-name" placeholder="山田 太郎">
+      </div>
+      <div class="field">
+        <label for="c-email">メールアドレス</label>
+        <input type="email" id="c-email" placeholder="example@mail.com">
+      </div>
+      <div class="field">
+        <label for="c-message">ご用件</label>
+        <textarea id="c-message" rows="5" placeholder="ご相談内容をご記入ください"></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitContact()">送信する</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 ミモザパートナーズ合同会社</p>
+  </footer>
+
+</div>
+
+<script>
+// 既存の問い合わせ受付GAS（contact_Code.gs）のデプロイURLをここに貼り付け
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzGUE42-775KiBImwlbZeVU6xU0YgxWpT7vcA9I1fL1mtLlmFJ15wlWztNFCfBrr0ejMA/exec';
+
+function submitContact(){
+  const name    = document.getElementById('c-name').value.trim();
+  const email   = document.getElementById('c-email').value.trim();
+  const message = document.getElementById('c-message').value.trim();
+  if(!name){ alert('お名前を入力してください'); return; }
+  if(!email){ alert('メールアドレスを入力してください'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('メールアドレスの形式をご確認ください'); return; }
+
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = '送信中…'; btn.disabled = true;
+
+  fetch(GAS_URL, {
+    method:'POST',
+    body: JSON.stringify({ name, email, message, source:'会社HP問い合わせ' })
+  })
+  .then(r=>r.json())
+  .then(res=>{
+    if(res.status==='ok'){
+      btn.textContent = '送信しました';
+      btn.style.background = '#7C8466';
+      alert('お問い合わせを送信しました。ありがとうございます。');
+    } else { throw new Error(res.message || '不明なエラー'); }
+  })
+  .catch(err=>{
+    btn.textContent = '送信する'; btn.disabled = false;
+    alert('送信に失敗しました。\n' + err.message);
+  });
+}
+</script>
+</body>
+</html>
